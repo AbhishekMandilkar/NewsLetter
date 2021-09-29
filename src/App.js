@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Pagination from "./components/Pagination";
+
+//components
+import Wrap from "./utils/Wrap.styles";
+import SideBar from "./components/SideBar.styled";
+import { NewsCard } from "./components/NewsCardContainer.styled";
 
 function App() {
+  const [checked, setChecked] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [news, setNews] = useState([]);
+  const handleChange = (nextChecked) => {
+    setChecked(nextChecked);
+  };
+  console.log(showFeedback);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts/")
+      .then((response) => response.json())
+      .then((json) => setNews(json));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrap>
+      {showFeedback ? (
+        <SideBar
+          checked={checked}
+          handleChange={handleChange}
+          showFeedback={showFeedback}
+          setShowFeedback={setShowFeedback}
+          withFeedback
+        />
+      ) : (
+        <SideBar
+          checked={checked}
+          handleChange={handleChange}
+          showFeedback={showFeedback}
+          setShowFeedback={setShowFeedback}
+        />
+      )}
+
+      <Pagination
+        NewsCard={NewsCard}
+        data={news}
+        pageLimit={3}
+        dataLimit={checked ? 5 : 6}
+        checked={checked}
+      />
+    </Wrap>
   );
 }
 

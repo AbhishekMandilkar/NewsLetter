@@ -1,0 +1,37 @@
+.react-switch {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.react-switch-handle {
+  box-shadow: inset 0px 3px 15px 3px rgba(0, 0, 0, 0.1);
+}
+.react-switch-bg {
+  box-shadow: inset 0px 3px 15px 3px rgba(0, 0, 0, 0.1);
+}
+.react-switch > .react-switch-handle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.react-switch > .react-switch-bg > div > svg {
+  width: 45px;
+  height: 45px;
+  color: gray;
+}
+.react-switch > .react-switch-bg > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.react-switch > .react-switch-handle {
+  height: 75px;
+  width: 75px;
+}
+.react-switch > .react-switch-handle > div > svg {
+  width: 45px;
+  height: 45px;
+}
+.react-switch-handle:active {
+  box-shadow: none;
+}
